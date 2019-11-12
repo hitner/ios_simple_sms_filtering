@@ -55,7 +55,14 @@
 - (ILMessageFilterAction)offlineActionForQueryRequest:(ILMessageFilterQueryRequest *)queryRequest {
     // Replace with logic to perform offline check whether to filter first (if possible).
     NSString *messageContent = queryRequest.messageBody;
-    if ([messageContent containsString:@"退订"] || [messageContent containsString:@"关闭通知"]) {
+    if ([messageContent containsString:@"验证码"]) {
+        return ILMessageFilterActionAllow;
+    }
+    else if ([messageContent containsString:@"退订"] ||
+        [messageContent containsString:@"回TD"] ||
+        [messageContent containsString:@"请回复"] ||
+        [messageContent containsString:@"美兆健康医疗"] ||
+        [messageContent containsString:@"关闭通知"]) {
         return ILMessageFilterActionFilter;
     }
     else {
